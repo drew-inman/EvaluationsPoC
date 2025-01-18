@@ -1,55 +1,117 @@
-import 'package:adv_basics/models/quiz_question.dart';
+import 'package:evaluations_poc/models/quiz_answer.dart';
+import 'package:evaluations_poc/models/quiz_question.dart';
 
 const questions = [
   QuizQuestion(
-    'What are the main building blocks of Flutter UIs?',
+    'Question 1?',
     [
-      'Widgets',
-      'Components',
-      'Blocks',
-      'Functions',
-    ],
-  ),
-  QuizQuestion('How are Flutter UIs built?', [
-    'By combining widgets in code',
-    'By combining widgets in a visual editor',
-    'By defining widgets in config files',
-    'By using XCode for iOS and Android Studio for Android',
-  ]),
-  QuizQuestion(
-    'What\'s the purpose of a StatefulWidget?',
-    [
-      'Update UI as data changes',
-      'Update data as UI changes',
-      'Ignore data changes',
-      'Render UI that does not depend on data',
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
     ],
   ),
   QuizQuestion(
-    'Which widget should you try to use more often: StatelessWidget or StatefulWidget?',
+    'Question 2?',
     [
-      'StatelessWidget',
-      'StatefulWidget',
-      'Both are equally good',
-      'None of the above',
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
     ],
   ),
   QuizQuestion(
-    'What happens if you change data in a StatelessWidget?',
+    'Question 3?',
     [
-      'The UI is not updated',
-      'The UI is updated',
-      'The closest StatefulWidget is updated',
-      'Any nested StatefulWidgets are updated',
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
     ],
   ),
   QuizQuestion(
-    'How should you update data inside of StatefulWidgets?',
+    'Question 4?',
     [
-      'By calling setState()',
-      'By calling updateData()',
-      'By calling updateUI()',
-      'By calling updateState()',
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
+    ],
+  ),
+  QuizQuestion(
+    'Question 5?',
+    [
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
+    ],
+  ),
+  QuizQuestion(
+    'Question 6?',
+    [
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
+    ],
+  ),
+  QuizQuestion(
+    'Question 7?',
+    [
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
+    ],
+  ),
+  QuizQuestion(
+    'Question 8?',
+    [
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
+    ],
+  ),
+  QuizQuestion(
+    'Question 9?',
+    [
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
+    ],
+  ),
+  QuizQuestion(
+    'Question 10?',
+    [
+      QuizAnswer('Answer 1', 1),
+      QuizAnswer('Answer 2', 2),
+      QuizAnswer('Answer 3', 3),
+      QuizAnswer('Answer 4', 4),
+      QuizAnswer('Answer 5', 5),
     ],
   ),
 ];
+
+int getMaxScore() {
+  int maxScore = 0;
+
+  for (var question in questions) {
+    // Find the highest score among the answers for each question
+    int maxAnswerScore = question.answers.map((answer) => answer.score).reduce((a, b) => a > b ? a : b);
+    maxScore += maxAnswerScore; // Add the highest score for each question
+  }
+
+  return maxScore;
+}

@@ -1,49 +1,68 @@
+import 'package:evaluations_poc/data/questions.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen(this.startQuiz, {super.key});
 
-  static const startScreenText = 'Learn Flutter the fun way!';
-  static const quizLogoImagePath = 'assets/images/quiz-logo.png';
-  static const startScreenSizedBox = SizedBox(height: 30);
-  static const startScreenBiggerSizedBox = SizedBox(height: 80);
-  static const quizLogoColor = Color.fromARGB(150, 255, 255, 255);
+  static const startScreenTitleText = 'Evaluations proof of concept';
+  static final startScreenSubtitleText = '${questions.length} questions';
+  static const startScreenSizedBox = SizedBox(height: 20);
+  static const startScreenBiggerSizedBox = SizedBox(height: 60);
 
   final void Function() startQuiz;
 
   @override
   Widget build(context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Image.asset(
-            quizLogoImagePath,
-            width: 300,
-            color: quizLogoColor,
-          ),
-          startScreenBiggerSizedBox,
-          Text(
-            startScreenText,
-            style: GoogleFonts.lato(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20.0,
+        vertical: 40.0,
+      ),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              startScreenTitleText,
+              style: GoogleFonts.lato(
+                color: Colors.white,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
             ),
-          ),
-          startScreenSizedBox,
-          OutlinedButton.icon(
-            onPressed: () {
-              startQuiz();
-            },
-            style: OutlinedButton.styleFrom(
-              foregroundColor: Colors.white,
+            startScreenSizedBox,
+            Container(
+              height: 2, // Height of the rectangle
+              color: Colors.white, // Color of the rectangle
+              margin: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 80,
+              ),
             ),
-            label: const Text("Start Quiz"),
-            icon: const Icon(Icons.arrow_right_alt),
-          ),
-        ],
+            startScreenSizedBox,
+            Text(
+              startScreenSubtitleText,
+              style: GoogleFonts.lato(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+            startScreenBiggerSizedBox,
+            OutlinedButton.icon(
+              onPressed: () {
+                startQuiz();
+              },
+              style: OutlinedButton.styleFrom(
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 80),
+              ),
+              label: const Text("Start"),
+            ),
+          ],
+        ),
       ),
     );
   }

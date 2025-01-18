@@ -1,7 +1,8 @@
-import 'package:adv_basics/data/questions.dart';
-import 'package:adv_basics/questions_screen.dart';
-import 'package:adv_basics/results_screen.dart';
-import 'package:adv_basics/start_screen.dart';
+import 'package:evaluations_poc/data/questions.dart';
+import 'package:evaluations_poc/models/quiz_answer.dart';
+import 'package:evaluations_poc/questions_screen.dart';
+import 'package:evaluations_poc/results_screen.dart';
+import 'package:evaluations_poc/start_screen.dart';
 import 'package:flutter/material.dart';
 
 class Quiz extends StatefulWidget {
@@ -14,7 +15,8 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  List<String> selectedAnswers = [];
+  List<QuizAnswer> selectedAnswers = [];
+  int totalScore = 0;
   var activeScreen = 'start-screen';
 
   void switchScreen() {
@@ -25,13 +27,15 @@ class _QuizState extends State<Quiz> {
 
   void restartQuiz() {
     selectedAnswers = [];
+    totalScore = 0;
     setState(() {
       activeScreen = 'questions-screen';
     });
   }
 
-  void chooseAnswer(String answer) {
+  void chooseAnswer(QuizAnswer answer) {
     selectedAnswers.add(answer);
+    totalScore += answer.score;
 
     if (selectedAnswers.length == questions.length) {
       setState(() {
@@ -63,7 +67,7 @@ class _QuizState extends State<Quiz> {
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Colors.black, Colors.deepPurple]),
+                colors: [Colors.black, Colors.blueAccent]),
           ),
           child: screenWidget,
         ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:adv_basics/questions_summary/question_identifier.dart';
+import 'package:evaluations_poc/questions_summary/question_identifier.dart';
 
 class SummaryItem extends StatelessWidget {
   const SummaryItem(this.itemData, {super.key});
@@ -32,16 +32,10 @@ class SummaryItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 2),
-              // Text(
-              //   itemData['correct_answer'] as String,
-              //   style: const TextStyle(
-              //     color: Color.fromARGB(150, 255, 255, 255),
-              //   ),
-              // ),
               Text(
                 itemData['user_answer'] as String,
-                style: TextStyle(
-                  color: isCorrectAnswer ? Colors.greenAccent : Colors.pinkAccent,
+                style: const TextStyle(
+                  color: Colors.white70,
                 ),
               ),
               const SizedBox(height: 10)

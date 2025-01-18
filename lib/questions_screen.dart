@@ -1,12 +1,13 @@
-import 'package:adv_basics/answer_button.dart';
+import 'package:evaluations_poc/answer_button.dart';
+import 'package:evaluations_poc/models/quiz_answer.dart';
 import 'package:flutter/material.dart';
-import 'package:adv_basics/data/questions.dart';
+import 'package:evaluations_poc/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key, required this.onSelectAnswer});
 
-  final void Function(String answer) onSelectAnswer;
+  final void Function(QuizAnswer) onSelectAnswer;
 
   @override
   State<QuestionsScreen> createState() {
@@ -15,11 +16,13 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  QuizAnswer? currentAnswer;
   var currentQuestionIndex = 0;
 
-  void answerQuestion(String selectedAnswer) {
+  void answerQuestion(QuizAnswer selectedAnswer) {
     widget.onSelectAnswer(selectedAnswer);
     setState(() {
+      currentAnswer = null;
       currentQuestionIndex++;
     });
   }
@@ -48,14 +51,34 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             const SizedBox(
               height: 30,
             ),
-            ...currentQuestion.getShuffledAnswers().map((answer) {
+            ...currentQuestion.answers.map((answer) {
+              bool isSelected = currentAnswer == answer;
               return AnswerButton(
-                buttonText: answer,
+                buttonText: answer.answer,
                 buttonAction: () {
-                  answerQuestion(answer);
+                  setState(() {
+                    currentAnswer = answer;
+                  });
                 },
+                isSelected: isSelected,
               );
-            })
+            }),
+            const SizedBox(
+              height: 60,
+            ),
+            OutlinedButton.icon(
+              onPressed: () {
+                currentAnswer == null ? null : answerQuestion(currentAnswer!);
+              },
+              style: OutlinedButton.styleFrom(
+                foregroundColor:
+                    currentAnswer == null ? Colors.grey : Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 80,
+                ),
+              ),
+              label: const Text("Next Question"),
+            ),
           ],
         ),
       ),
